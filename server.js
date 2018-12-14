@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const pgp = require('pg-promise')();
 const connectionString = "postgres://jtyliushcpedti:70bb3c3dcb1ebd55baa74d89081461ad3829669a056b0fb3bce64b6bbbadd4a3@ec2-54-83-8-246.compute-1.amazonaws.com:5432/dfa2rgb3i6r5af?ssl=true"
-const db= pgp(connectionString);
+const db = pgp(connectionString);
 const port = process.env.PORT || 5000;
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
