@@ -1,0 +1,179 @@
+body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+h1 {
+	margin: 0;
+	padding: 0;
+}
+
+
+/*----------- Header ----------*/
+
+.header {
+	background: rgba(0, 0, 0, 0.75);
+	height: 2em;
+	color: white;
+	display: flex;
+	justify-content: space-evenly;
+		align-items: center;
+	width: 100%;
+	padding: 0;
+}
+
+	.search-bar-container {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+		.search-bar {
+			height: 2em;
+			padding: 0 1em;
+			border: none;
+		}
+
+		.magnifying-glass {
+			height: 2em;
+			width: 2em;
+			background-image: url('https://banner2.kisspng.com/20180429/ufw/kisspng-computer-icons-font-awesome-magnifying-glass-clip-5ae576ee307978.7622812615249876301986.jpg');
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
+			border: none;
+		}
+
+	.nav-placeholder {
+		height: 3em;
+		width: 100%;
+	}
+
+
+/* ----- Nav Bar -----*/
+
+.sticky {
+	position: fixed;
+	top: 0;
+	width:100%;
+}
+
+nav {
+	position: absolute;
+	height: 2em;
+	top: 2em;
+	display: flex;
+	width: 100%;
+	align-items: center;
+	background: rgba(250, 0, 0, 0.75);
+}
+
+	.nav-links-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		flex: 1 1 50%;
+	}
+
+		.nav-links-container a {
+			text-decoration: none;
+			color: white;
+		}
+
+
+/* ---------- Main Content ----------*/
+
+main {
+  background: rgba(50, 50, 50, 0.75);
+}
+
+/*----- Guest Home -----*/
+
+
+/*----- User Home -----*/
+
+
+/*----- Register Page -----*/
+
+.register-form-container {
+	display: flex;
+	flex-wrap: wrap;
+	width: 90%;
+	align-items: center;
+	margin: auto;
+}
+
+	.input-container {
+		width: 100%;
+		padding: 0.5em;
+	}
+
+		.register-label {
+			font-weight: bold;
+			padding: 1em;
+		}
+
+		.register-input {
+			padding: 0.25em 1em;
+		}
+
+
+/*----- Login Page -----*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+footer {
+  background: black;
+  color: gray;
+  text-align: center;
+  height: 70em;
+}
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
