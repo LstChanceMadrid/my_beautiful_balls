@@ -1,8 +1,11 @@
 const express = require('express');
+const sensitive = require('./sensitive')
 const bodyParser = require('body-parser');
 const app = express();
+const cloudinary = require('cloudinary');
 const pgp = require('pg-promise')();
-const connectionString = "postgres://jtyliushcpedti:70bb3c3dcb1ebd55baa74d89081461ad3829669a056b0fb3bce64b6bbbadd4a3@ec2-54-83-8-246.compute-1.amazonaws.com:5432/dfa2rgb3i6r5af?ssl=true"
+const connectionString = sensitive.herokuConnectionString
+
 const db = pgp(connectionString);
 const port = process.env.PORT || 5000;
 const bcrypt = require('bcrypt');
@@ -13,6 +16,15 @@ const jwt = require('jsonwebtoken')
 app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+
+cloudinary.config({
+    cloud_name: sensitive.cloudName,
+    api_key: sensitive.cloudAPIKey,
+    api_secret: sensitive.cloudAPISecret
+})
+
+
 
 const authenticate = (req, res, next) => {
     let authorizationHeader = req.headers['authorization']
@@ -61,6 +73,8 @@ app.post('/api/register', (req, res) => {
     let email = req.body.email
     let password = req.body.password
 
+    console.log(username)
+
     db.none("SELECT username FROM users WHERE username = $1", [username]).then(() => {
         console.log('register server after do none')
         bcrypt.hash(password, saltRounds).then(hash => {
@@ -87,7 +101,7 @@ app.post('/api/login', (req, res) => {
     let password = req.body.password
 
 	db.one('SELECT username, id, password FROM users WHERE username = $1', [username]).then(user => {
-
+        console.log('login found user')
 		bcrypt.compare(password, user.password).then(result => {
 
 			if (result === true) {
@@ -168,4 +182,3 @@ const makeitup = () => {
         console.log(e)
     })
 }
-

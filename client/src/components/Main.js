@@ -19,7 +19,9 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    username : state.username
+    user : {
+      username : state.user.username
+    }
   }
 }
 

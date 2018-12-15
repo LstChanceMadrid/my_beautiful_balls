@@ -1,24 +1,31 @@
 {
-  "name": "MyBeautifulBalls",
+  "name": "mybeautifulballs",
   "version": "1.0.0",
   "scripts": {
     "client": "cd client && npm run start",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
+    "cloudinary": "^1.13.2",
     "cors": "^2.8.5",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "express": "^4.16.4",
+    "immutable": "^4.0.0-rc.12",
     "jsonwebtoken": "^8.4.0",
     "pg-promise": "^8.5.2",
     "react-test-renderer": "^16.6.3"
   },
   "devDependencies": {
     "concurrently": "^4.0.1"
-  }
+  },
+  "main": "server.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

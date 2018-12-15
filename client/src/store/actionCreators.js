@@ -29,6 +29,7 @@ export const registerUser = () => {
             email : localStorage.email ,
             password : localStorage.password 
         }).then(response => {
+            console.log('register action creator', response)
             if (response.data.success === true) {
                 localStorage.removeItem('firstname')
                 localStorage.removeItem('lastname')

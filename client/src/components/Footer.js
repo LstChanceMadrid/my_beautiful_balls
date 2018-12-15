@@ -6,7 +6,7 @@ class Footer extends Component {
     return (
       <footer>
           <h1>Footer</h1>
-        <p>&copy;Copyright pcdb</p>
+        <p>Copyright&copy; MyBeautifulBalls</p>
       </footer>
     )
   }
