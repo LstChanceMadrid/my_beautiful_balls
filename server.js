@@ -4,7 +4,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const cloudinary = require('cloudinary');
 const pgp = require('pg-promise')();
-const connectionString = sensitive.herokuConnectionString
+const connectionString = sensitive.herokuConnectionString;
+const multer = require('multer');
+const stripe = require("stripe")(sensitive.stripeSecretKey);
+const uuidv4 = require('uuid/v4');
+const upload = multer();
 
 const db = pgp(connectionString);
 const port = process.env.PORT || 5000;
@@ -16,7 +20,11 @@ const jwt = require('jsonwebtoken')
 app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(require("body-parser").text());
+app.use((req, res, next) => {
+    req.user = { id: 'asdfasdfasdfasdf' };
+    next();
+  });
 
 cloudinary.config({
     cloud_name: sensitive.cloudName,
@@ -53,17 +61,6 @@ const authenticate = (req, res, next) => {
     })
 }
 
-// app.post('/api/search', (req, res) => {
-//     let search = req.body.search;
-//     db.any('SELECT username FROM users', [search]).then(result => {
-//         console.log(result)
-
-//         res.json({result : result})
-//     }).catch(e => {
-//         console.log(e)
-//     })
-// })
-
 app.post('/api/register', (req, res) => {
     console.log('register server')
     
@@ -93,7 +90,6 @@ app.post('/api/register', (req, res) => {
         }
     })
 })
-
 
 app.post('/api/login', (req, res) => {
     console.log('login server')
@@ -137,48 +133,106 @@ app.post('/api/login', (req, res) => {
 // });
 
 
+app.post('/saveImage', (req, res) => {
 
+    let ballImage = req.body.ballImage
+    db.any('INSERT INTO balls (image) VALUES ($1)', [ballImage]).then(ball => { 
+        
+        console.log('in first db through')
+        db.any('SELECT image, id FROM balls where balls.image = $1', [ballImage]).then(response => {
+            console.log(response)
+            res.json({success : true, ballImage : response})
+        }).catch(e => console.log(e))
+    }).catch(e => console.log(e))
 
+})
 
+app.get('/grabBalls', (req, res) => {
+    db.any('SELECT * FROM balls').then(response => {
+        console.log(response)
+        res.json({response : response})
+    })
+})
+//  _   _  ___ _____ _____
+// | \ | |/ _ \_   _| ____|
+// |  \| | | | || | |  _|
+// | |\  | |_| || | | |___
+// |_| \_|\___/ |_| |_____|
 
+app.use((req, res, next) => {
+  req.user = { id: 'asdfasdfasdfasdf' };
+  next();
+});
 
+app.post('/:username/charge', upload.none(), cors(), async (req, res) => {
+  console.log(JSON.stringify(req.body));
 
+  let error;
+  let status = 'failed';
+  try {
+    const {
+      csrfToken,
+      currency = 'usd',
+      description,
+      stripeBillingAddressCity,
+      stripeBillingAddressCountry,
+      stripeBillingAddressLine1,
+      stripeBillingAddressState,
+      stripeBillingAddressZip,
+      stripeBillingName,
+      stripeEmail,
+      stripeShippingAddressCity,
+      stripeShippingAddressCountry,
+      stripeShippingAddressLine1,
+      stripeShippingAddressState,
+      stripeShippingAddressZip,
+      stripeShippingName,
+      stripeToken,
+      stripeTokenType,
+    } = req.body;
 
+    // TODO: Assert not a CSRF.
 
+    let amount;
 
+    // TODO: Lookup existing customer or create a new customer.
+    // TODO: Save relevant billing and shipping address information.
+    const customer = await stripe.customers.create({
+      email: stripeEmail,
+      source: stripeToken,
+      metadata: {
+        userId: req.user.id,
+      },
+    });
 
+    if (stripeTokenType === 'card') {
+      const idempotency_key = uuidv4();
+      const charge = await stripe.charges.create(
+        {
+          amount,
+          currency: currency,
+          customer: customer.id,
+          description: description,
+        },
+        {
+          idempotency_key,
+        }
+      );
+      console.log('charge:');
+      console.log(JSON.stringify(charge));
+    } else {
+      throw Error(`Unrecognized Stripe token type: "${stripeTokenType}"`);
+    }
 
+    status = 'success';
+  } catch (err) {
+    console.error(err);
+    error = err;
+  }
 
-
-
-
-
-
-
+  res.json({ error, status });
+});
 
 
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const makeitup = () => {
-    db.any('CREATE TABLE users(id SERIAL PRIMARY KEY, username VARCHAR(15) NOT NULL, firstname VARCHAR(255) NOT NULL, lastname VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL)').catch(e => {
-        console.log(e)
-    })
-}

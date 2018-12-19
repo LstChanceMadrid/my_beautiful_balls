@@ -13,8 +13,8 @@ export default class Nav extends Component {
 		} else {
 			navBar[0].classList.remove('sticky')
 		}
-	}
-
+  }
+    
 
     return (
       <nav className="nav-bar">

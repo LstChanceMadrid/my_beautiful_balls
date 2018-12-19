@@ -18,8 +18,12 @@
     "express": "^4.16.4",
     "immutable": "^4.0.0-rc.12",
     "jsonwebtoken": "^8.4.0",
+    "multer": "^1.4.1",
     "pg-promise": "^8.5.2",
-    "react-test-renderer": "^16.6.3"
+    "react-stripe-elements": "^2.0.1",
+    "react-test-renderer": "^16.6.3",
+    "stripe": "^6.19.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "concurrently": "^4.0.1"

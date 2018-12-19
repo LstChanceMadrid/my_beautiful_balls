@@ -5,9 +5,9 @@ import * as actionCreators from '../../store/actionCreators'
 
 
 class UserNav extends Component {
-	constructor(props) {
-		super(props)
-	}
+	// constructor(props) {
+	// 	super(props)
+	// }
 
 	render() {
 
@@ -26,7 +26,7 @@ class UserNav extends Component {
 				
 				<div  className="nav-links-container">
 					<div><Link to = {`/${this.props.user.username}/home`}>Home</Link></div>
-					<div><Link to = {`/${this.props.user.username}/my-cart`}>My Cart</Link></div>
+					<div><Link to = {`/${this.props.user.username}/my-cart`}>My Sack</Link></div>
 					<div onClick={this.props.logout}><Link to ="/" >Logout</Link></div>
 				</div>
 			</nav>

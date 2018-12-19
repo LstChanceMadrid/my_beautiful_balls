@@ -1,12 +1,10 @@
-import { createBrowserHistory } from 'history'
-
-const history = createBrowserHistory()
 
 const initialState = {
     user : {
         username : null,
         password : null
-    }
+    },
+    path : null
 }
 
 const reducer = (state = initialState, action) => {
@@ -14,6 +12,7 @@ const reducer = (state = initialState, action) => {
     if (action.type === "CURRENT_USER") {
         // window.location.pathname = `/${action.user.username}/home`
         return {
+            ...state,
             user : {
                ...state.user,
                username : action.user.username,
@@ -27,6 +26,20 @@ const reducer = (state = initialState, action) => {
         }
     }
 
+    if (action.type === "BALL_IMAGE") {
+        console.log('in reducer')
+        return {
+            ...state,
+            ballImage : action.ballImage.ballImage[0].image
+        }
+    }
+
+    if (action.type === "GRAB_BALLS") {
+        return {
+            ...state,
+            balls : action.balls
+        }
+    }
     return state
 }
 

@@ -1,24 +1,47 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import  ball from '../../styles/ballcanvas.png'
 import DrawArea from './DrawArea'
+import * as actionCreators from '../../store/actionCreators'
 
 
 class Home extends Component {
 
-  draw = () => {
-    // document.getElementById('drawball') = `../../styles/download.jpeg`
+  componentWillReceiveProps = () => {
+    document.getElementById('hi').innerHTML = `<div id="draw-container-user"><div class="draw-area-user">${this.props.ballImage}</div></div>`
+
   }
+
+  handleProp = () => {
+
+  }
+
+
   render() {
-    
+    console.log(this.props.ballImage)
     return (
       <div>
         <h1>Home</h1>
-        <DrawArea />
+        
+          <DrawArea />
+
+          <button onClick={this.props.saveBall}>save</button>
+        <section id="hi"></section>
       </div>
     )
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    ...state,
+    ballImage : state.ballImage
+  }
+}
 
-export default connect()(Home)
+const mapDispatchToProps = dispatch => {
+  return {
+    saveBall : () => dispatch(actionCreators.saveBall())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

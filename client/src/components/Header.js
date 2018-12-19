@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 // import Logo from './Logo'
 import Nav from './header/Nav'
 import UserNav from './header/UserNav'
@@ -55,40 +55,44 @@ class Header extends Component {
 		// 		})
 		// 	});
 		// })
-	  }
+	}
 
 
 
 
 	render() {
-		let header = () => { 
-			return (
-			<div className="header">
-				<h1>Header</h1>
-
-				<div  className="search-bar-container">
-					<input className="search-bar"  type="text" onChange={this.handleSearchTextBoxOnChange} name="search" placeholder="Search" />
-
-					<input className="magnifying-glass" type="submit" onClick = {this.handleSearchButton} value="" />
-				</div>
-			</div>
-			)
-		}
 
 		if (localStorage.getItem('jsonwebtoken')) {
+			let username = this.props.user.username
+
 			return (
 				<header>
-					{header()}
+					<div className="header">
+						<Link to={`/${username}/home`}><h1>Header</h1></Link>
+
+						<div className="search-bar-container">
+							<input className="search-bar"  type="text" onChange={this.handleSearchTextBoxOnChange} name="search" placeholder="Search" />
+
+							<input className="magnifying-glass" type="submit" onClick = {this.handleSearchButton} value="" />
+						</div>
+					</div>
 
 					<Route path="/:username/" component={UserNav} />
 				</header>
 			)
-
 		} else {
 			return (
 				<header>
-					{header()}
-					
+					<div className="header">
+						<Link to={`/home`}><h1>Header</h1></Link>
+
+						<div  className="search-bar-container">
+							<input className="search-bar"  type="text" onChange={this.handleSearchTextBoxOnChange} name="search" placeholder="Search" />
+
+							<input className="magnifying-glass" type="submit" onClick = {this.handleSearchButton} value="" />
+						</div>
+					</div>
+
 					<Route exact path="/*" component={Nav} />
 				</header>
 			)

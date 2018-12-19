@@ -8,6 +8,7 @@ import Header from "./Header"
 import Home from './main/Home'
 import Login from './main/Login'
 import Main from "./Main"
+import MyCart from './main/MyCart'
 import Register from './main/Register'
 import UserHome from './main/UserHome'
 
@@ -21,10 +22,10 @@ class App extends Component {
       return (
         <div>
           <Header />
-
           <Main>
             <Switch>
               <Route path="/:username/home" component={UserHome} />
+              <Route path="/:username/my-cart" component={MyCart} />
             </Switch>
           </Main>
 
@@ -35,7 +36,6 @@ class App extends Component {
       return (
         <div>
           <Header />
-
           <Main>
             <Switch>
               <Route exact path="/register" component={Register} />

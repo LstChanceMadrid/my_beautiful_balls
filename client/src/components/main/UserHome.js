@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import * as actionCreators from '../../store/actionCreators'
 
 class UserHome extends Component {
-  constructor(props) {
-    super(props)
+  // constructor(props) {
+  //   super(props)
 
+  // }
+
+  state = {
+    ballsElement: null
   }
 
   componentDidMount = () => {
@@ -12,14 +17,28 @@ class UserHome extends Component {
     localStorage.removeItem('firstname')
     localStorage.removeItem('lastname')
     localStorage.removeItem('email')
+    this.setState({ballsElement: document.getElementById('hi')})
   }
 
+  componentDidUpdate = () => {
+    console.log(this.props.balls)
+    let balls = this.props.balls
+    for (let ball in balls) {
+      document.getElementById('hi').insertAdjacentHTML('beforeend', `<div id="draw-container-user"><div class="draw-area-user">${balls[ball]}</div></div>`)
+    }
+    
+
+  }
 
   render() {
     return (
+      
       <div>
+        
         {this.props.user.username}
+        <section id="hi"></section>
         <h1>User Home</h1>
+        <button onClick={this.props.grabBalls}>Balls</button>
       </div>
     )
   }
@@ -29,8 +48,14 @@ const mapStateToProps = (state) => {
   return {
     user : {
       username : state.user.username
-    }
+    },
+    balls : state.balls
   }
 }
 
-export default connect(mapStateToProps)(UserHome)
+const mapDispatchToProps = dispatch => {
+  return {
+    grabBalls : () => dispatch(actionCreators.grabBalls())
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome)

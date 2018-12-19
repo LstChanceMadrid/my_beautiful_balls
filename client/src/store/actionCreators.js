@@ -4,6 +4,8 @@ import setAuthenticationToken from '../utils'
 
 const REGISTER_URL = "http://localhost:5000/api/register"
 const LOGIN_URL = 'http://localhost:5000/api/login'
+const SAVE_IMAGE_URL = 'http://localhost:5000/saveImage'
+const GRAB_BALLS_URL = 'http://localhost:5000/grabBalls'
 
 export const currentUser = (user) => {
     return {
@@ -16,6 +18,21 @@ export const removeUser = (user) => {
     return {
         type : "REMOVE_USER",
         user
+    }
+}
+
+export const checkPath = (ballImage) => {
+    return {
+        type: "BALL_IMAGE",
+        ballImage
+    }
+}
+
+export const allBalls = (balls) => {
+    return {
+        type: "GRAB_BALLS",
+        balls
+
     }
 }
 
@@ -78,5 +95,38 @@ export const logout = () => {
     return dispatch => {
         let user = {}
         dispatch(removeUser(user))
+    }
+}
+
+export const saveBall = () => {
+    let ballImage = localStorage.getItem('ballImage')
+
+    return dispatch => {
+        
+        axios.post(SAVE_IMAGE_URL, {
+            ballImage : ballImage
+        }).then(response => {
+            let ballImage = response.data
+            console.log('in actioncreator')
+
+            dispatch(checkPath(ballImage))
+            
+        })
+    }
+}
+
+export const grabBalls = () => {
+    return dispatch => {
+
+        axios.get(GRAB_BALLS_URL).then( response => {
+            let ballsArray = []
+            let balls = response.data.response
+
+            for (let ball in balls) {
+                ballsArray.push(balls[ball].image)
+            }    
+
+            dispatch(allBalls(ballsArray))
+        })
     }
 }
