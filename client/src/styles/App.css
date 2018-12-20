@@ -23,7 +23,10 @@ h1 {
 	width: 100%;
 	padding: 0;
 }
-
+	.header a {
+		color: deeppink;
+		text-decoration: none;
+	}
 	.search-bar-container {
 		display: flex;
 		justify-content: space-around;
@@ -115,21 +118,21 @@ main {
 }
 
 @media only screen and (min-width: 840px) {
-	#draw-container, #draw-container-user {
+	#draw-container {
 		width: 575px;
 		height: 359px;
 	}
 }
 
 @media only screen and (min-width: 1024px) {
-	#draw-container, #draw-container-user {
+	#draw-container {
 		width: 702px;
 		height: 439px;
 	}
 }
 
 @media only screen and (min-width: 1250px) {
-	#draw-container, #draw-container-user {
+	#draw-container {
 		width: 857px;
 		height: 536px;
 	}
@@ -161,7 +164,11 @@ main {
 
 
 /*----- User Home -----*/
-
+#my-balls {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
 
 /*----- Register Page -----*/
 
@@ -202,10 +209,6 @@ main {
 
 
 
-.draw-areas {
-	height: 100px;
-	width: 100px;
-}
 
 .oldPath {
 	color: blue;
@@ -271,7 +274,7 @@ footer {
   background: black;
   color: gray;
   text-align: center;
-  height: 70em;
+  height: 5em;
 }
 
 /* @keyframes App-logo-spin {

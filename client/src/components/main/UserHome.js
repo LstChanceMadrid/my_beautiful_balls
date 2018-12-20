@@ -17,14 +17,13 @@ class UserHome extends Component {
     localStorage.removeItem('firstname')
     localStorage.removeItem('lastname')
     localStorage.removeItem('email')
-    this.setState({ballsElement: document.getElementById('hi')})
   }
 
   componentDidUpdate = () => {
     console.log(this.props.balls)
     let balls = this.props.balls
     for (let ball in balls) {
-      document.getElementById('hi').insertAdjacentHTML('beforeend', `<div id="draw-container-user"><div class="draw-area-user">${balls[ball]}</div></div>`)
+      document.getElementById('my-balls').insertAdjacentHTML('beforeend', `<div id="draw-container-user"><div class="draw-area-user">${balls[ball]}</div></div>`)
     }
     
 
@@ -36,7 +35,7 @@ class UserHome extends Component {
       <div>
         
         {this.props.user.username}
-        <section id="hi"></section>
+        <section id="my-balls"></section>
         <h1>User Home</h1>
         <button onClick={this.props.grabBalls}>Balls</button>
       </div>
