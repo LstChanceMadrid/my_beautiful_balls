@@ -15,13 +15,9 @@ import module from '../../sensitive'
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 
-
-// TODO: Configure with your test mode publishable key.
 const stripeApiKey = "pk_test_OSyusZepLTgA89ecvgVbG0IG";
 
-// TODO: Head over to https://codesandbox.io/s/311ppyl0m1, fork it, configure
-// with your test mode secret key, and update the following checkout URL using
-// your forked sandbox's ID.
+
 const checkoutUrl = "https://asdf1234.sse.codesandbox.io/:username/charge";
 
 class Checkout extends React.Component {
@@ -195,7 +191,8 @@ class Checkout extends React.Component {
                     billingAddress
                     description={`Your balls are gonna cost $${amount}`}
                     // image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    image="https://alligator.io/images/alligator-logo3.svg"
+                    // image="https://alligator.io/images/alligator-logo3.svg"
+                    image='https://upload.wikimedia.org/wikipedia/commons/d/db/Sports_portal_bar_icon.png'
                     label="Pay with 💳"
                     locale="auto"
                     name="MyBeautifulBalls"

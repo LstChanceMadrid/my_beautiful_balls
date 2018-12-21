@@ -6,6 +6,8 @@ const REGISTER_URL = "http://localhost:5000/api/register"
 const LOGIN_URL = 'http://localhost:5000/api/login'
 const SAVE_IMAGE_URL = 'http://localhost:5000/saveImage'
 const GRAB_BALLS_URL = 'http://localhost:5000/grabBalls'
+const REMOVE_BALL_URL = "http://localhost:5000/removeBall"
+
 
 export const currentUser = (user) => {
     return {
@@ -120,13 +122,23 @@ export const grabBalls = () => {
 
         axios.get(GRAB_BALLS_URL).then( response => {
             let ballsArray = []
+
             let balls = response.data.response
 
             for (let ball in balls) {
-                ballsArray.push(balls[ball].image)
+                ballsArray.push(balls[ball])
             }    
 
             dispatch(allBalls(ballsArray))
+        })
+    }
+}
+
+export const removeBall = (id) => {
+    return dispatch => {
+        console.log('trying to remove balls')
+        axios.post(REMOVE_BALL_URL, {
+          id : id
         })
     }
 }

@@ -100,7 +100,7 @@ main {
 	border-radius: 50%;
 }
 
-#draw-container, #draw-container-user {
+#draw-container, .draw-container-user {
 	width: 281px;
 	height: 176px;
 	border-radius: 50%;
@@ -111,7 +111,7 @@ main {
 }
 
 @media only screen and (min-width: 500px) {
-	#draw-container, #draw-container-user {
+	#draw-container, .draw-container-user {
 		width: 472px;
 		height: 295px;
 	}
@@ -193,6 +193,23 @@ main {
 		.register-input {
 			padding: 0.25em 1em;
 		}
+
+
+.ball-container {
+	padding: 1em;
+}
+.ball-option-container {
+	display: flex;
+	justify-content: space-between;
+}
+
+
+
+
+
+
+
+
 
 
 /*----- Login Page -----*/

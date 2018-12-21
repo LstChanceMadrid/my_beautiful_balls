@@ -11,11 +11,6 @@ class Home extends Component {
 
   }
 
-  handleProp = () => {
-
-  }
-
-
   render() {
     console.log(this.props.ballImage)
     return (

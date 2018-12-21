@@ -73,7 +73,6 @@ app.post('/api/register', (req, res) => {
     console.log(username)
 
     db.none("SELECT username FROM users WHERE username = $1", [username]).then(() => {
-        console.log('register server after do none')
         bcrypt.hash(password, saltRounds).then(hash => {
 
             db.any('INSERT INTO users (username, firstname, lastname, email, password) VALUES ($1, $2, $3, $4, $5)', [username, firstname, lastname, email, hash])
@@ -97,7 +96,6 @@ app.post('/api/login', (req, res) => {
     let password = req.body.password
 
 	db.one('SELECT username, id, password FROM users WHERE username = $1', [username]).then(user => {
-        console.log('login found user')
 		bcrypt.compare(password, user.password).then(result => {
 
 			if (result === true) {
@@ -138,9 +136,7 @@ app.post('/saveImage', (req, res) => {
     let ballImage = req.body.ballImage
     db.any('INSERT INTO balls (image) VALUES ($1)', [ballImage]).then(ball => { 
         
-        console.log('in first db through')
         db.any('SELECT image, id FROM balls where balls.image = $1', [ballImage]).then(response => {
-            console.log(response)
             res.json({success : true, ballImage : response})
         }).catch(e => console.log(e))
     }).catch(e => console.log(e))
@@ -149,10 +145,16 @@ app.post('/saveImage', (req, res) => {
 
 app.get('/grabBalls', (req, res) => {
     db.any('SELECT * FROM balls').then(response => {
-        console.log(response)
         res.json({response : response})
     })
 })
+
+app.post('/removeBall'), (req, res) => {
+    console.log('in server')
+    let id = req.body.id
+
+    db.one('DELETE FROM balls WHERE id = $1', [id]).catch(e => console.log(e))
+}
 //  _   _  ___ _____ _____
 // | \ | |/ _ \_   _| ____|
 // |  \| | | | || | |  _|

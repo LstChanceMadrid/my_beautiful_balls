@@ -16,13 +16,12 @@ class Login extends Component {
     }
   }
 
-
-
   componentWillUpdate = () => {
     localStorage.setItem('username', this.state.user.username)
     localStorage.setItem('password', this.state.user.password)
   }
   
+
   handleUsernameChange = (e) => {
     this.setState({
        user: {

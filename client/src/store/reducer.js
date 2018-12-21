@@ -4,7 +4,12 @@ const initialState = {
         username : null,
         password : null
     },
-    path : null
+    path : null,
+    ball : {
+        id : null,
+        image : null
+    },
+    balls: []
 }
 
 const reducer = (state = initialState, action) => {
