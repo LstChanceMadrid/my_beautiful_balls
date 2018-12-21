@@ -46,7 +46,6 @@ class DrawArea extends Component {
     handleMouseUp = () => {
         this.setState({isDrawing : false})
         let ballImage = document.querySelector('svg').innerHTML
-        console.log(ballImage)
         localStorage.setItem('ballImage', ballImage)
     }
 
@@ -99,8 +98,6 @@ const Drawing = ({ lines }) => {
     var mqMobile, mqMedium, updateViewBox, mqSmall, mqLarge, mqExtraLarge;
 
         let svg = document.getElementsByTagName('svg');
-
-        /* Store the original value in a variable */
         
         /* Define our media query and media query object */
         mqMobile = matchMedia("(min-width: 1px")
@@ -116,7 +113,6 @@ const Drawing = ({ lines }) => {
             svg.y = "88"
         }
         if (mqSmall.matches) {
-            /* Change the viewBox dimensions to show the hexagon */
             svg.viewBox = "0 0 472 295"
             svg.x = "236"
             svg.y = "148"

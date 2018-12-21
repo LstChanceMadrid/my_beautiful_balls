@@ -12,23 +12,19 @@ import MyCart from './main/MyCart'
 import Register from './main/Register'
 import UserHome from './main/UserHome'
 
-
 class App extends Component {
-
-
-
   render() {
     if (localStorage.getItem('jsonwebtoken')) {
+      let username = localStorage.username
       return (
         <div>
           <Header />
           <Main>
             <Switch>
-              <Route path="/:username/home" component={UserHome} />
-              <Route path="/:username/my-cart" component={MyCart} />
+              <Route path={`/${username}/home`} component={UserHome} />
+              <Route path={`/${username}/my-cart`} component={MyCart} />
             </Switch>
           </Main>
-
           <Footer />
         </div>
       );
@@ -44,7 +40,6 @@ class App extends Component {
               <Route path="/*" component={Home} />
             </Switch>
           </Main>
-
           <Footer />
         </div>
       );

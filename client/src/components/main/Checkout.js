@@ -1,6 +1,4 @@
 
-import module from '../../sensitive'
-
 // export default connect(mapStateToProps)(Checkout)
 
 //  _   _  ___ _____ _____

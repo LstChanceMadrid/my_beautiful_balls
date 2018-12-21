@@ -21,6 +21,9 @@ class Login extends Component {
     localStorage.setItem('password', this.state.user.password)
   }
   
+  componentWillUnmount = () => {
+    localStorage.removeItem('username')
+  }
 
   handleUsernameChange = (e) => {
     this.setState({
@@ -67,7 +70,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-
   return {
     login : () => dispatch(actionCreators.authenticateLogin())
   }

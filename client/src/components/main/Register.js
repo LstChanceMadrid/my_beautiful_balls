@@ -20,6 +20,13 @@ class Register extends Component {
         localStorage.setItem('password', this.state.user.password)
       }
 
+    componentWillUnmount = () => {
+        localStorage.removeItem('firstname')
+        localStorage.removeItem('lastname')
+        localStorage.removeItem('email')
+        localStorage.removeItem('password')
+    }
+
     handleTextBoxChange = (e) => {
         this.setState({
             user : {

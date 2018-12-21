@@ -32,7 +32,6 @@ const reducer = (state = initialState, action) => {
     }
 
     if (action.type === "BALL_IMAGE") {
-        console.log('in reducer')
         return {
             ...state,
             ballImage : action.ballImage.ballImage[0].image

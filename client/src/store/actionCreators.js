@@ -118,6 +118,7 @@ export const saveBall = () => {
 }
 
 export const grabBalls = () => {
+    console.log('in action creator')
     return dispatch => {
 
         axios.get(GRAB_BALLS_URL).then( response => {
@@ -128,7 +129,7 @@ export const grabBalls = () => {
             for (let ball in balls) {
                 ballsArray.push(balls[ball])
             }    
-
+            console.log('in action creator 2')
             dispatch(allBalls(ballsArray))
         })
     }
@@ -139,6 +140,8 @@ export const removeBall = (id) => {
         console.log('trying to remove balls')
         axios.post(REMOVE_BALL_URL, {
           id : id
-        })
+        }).catch(e => console.log(e))
+
+        dispatch(allBalls())
     }
 }
