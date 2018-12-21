@@ -91,8 +91,13 @@ nav {
 main {
   background: rgba(50, 50, 50, 0.75);
   padding: 1em;
+  min-height: 100vh;
 }
-
+.home-header {
+	font-size: 3em;
+	color: deeppink;
+	text-align:center;
+}
 /*----- Guest Home -----*/
 .drawing {
 	width: 100%;
@@ -115,12 +120,20 @@ main {
 		width: 472px;
 		height: 295px;
 	}
+	.home-header {
+		font-size: 4em;
+		color: deeppink;
+	}
 }
 
 @media only screen and (min-width: 840px) {
 	#draw-container {
 		width: 575px;
 		height: 359px;
+	}
+	.home-header {
+		font-size: 5em;
+		color: deeppink;
 	}
 }
 
@@ -129,12 +142,20 @@ main {
 		width: 702px;
 		height: 439px;
 	}
+	.home-header {
+		font-size: 6em;
+		color: deeppink;
+	}
 }
 
 @media only screen and (min-width: 1250px) {
 	#draw-container {
 		width: 857px;
 		height: 536px;
+	}
+	.home-header {
+		font-size: 8em;
+		color: deeppink;
 	}
 }
 
@@ -303,7 +324,7 @@ footer {
   background: black;
   color: deeppink;
   text-align: center;
-  height: 30em;
+  height: 5em;
 }
 
 /* @keyframes App-logo-spin {
