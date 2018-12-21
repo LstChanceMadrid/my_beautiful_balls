@@ -301,9 +301,9 @@ main {
 
 footer {
   background: black;
-  color: gray;
+  color: deeppink;
   text-align: center;
-  height: 5em;
+  height: 30em;
 }
 
 /* @keyframes App-logo-spin {

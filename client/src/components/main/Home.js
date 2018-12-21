@@ -8,7 +8,6 @@ class Home extends Component {
 
   componentWillReceiveProps = () => {
     document.getElementById('hi').innerHTML = `<div id="draw-container-user"><div class="draw-area-user">${this.props.ballImage}</div></div>`
-
   }
 
   render() {
