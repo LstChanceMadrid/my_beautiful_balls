@@ -1,20 +1,10 @@
 
-// export default connect(mapStateToProps)(Checkout)
-
-//  _   _  ___ _____ _____
-// | \ | |/ _ \_   _| ____|
-// |  \| | | | || | |  _|
-// | |\  | |_| || | | |___
-// |_| \_|\___/ |_| |_____|
-//
-// This is just for demonstration purposes and does **NOT** necessarily
-// represent security best practices.
-
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import {connect} from "react-redux"
+import modules from '../../sensitive'
 
-const stripeApiKey = "pk_test_OSyusZepLTgA89ecvgVbG0IG";
+const stripeApiKey = module.stripeKey;
 
 
 const checkoutUrl = "https://localhost:5000/:username/charge?ssl=true";
