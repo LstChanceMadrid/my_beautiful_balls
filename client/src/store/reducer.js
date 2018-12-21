@@ -1,5 +1,5 @@
 
-const initialState = {
+export const initialState = {
     user : {
         username : null,
         password : null
@@ -7,15 +7,18 @@ const initialState = {
     path : null,
     ball : {
         id : null,
-        image : null
+        image : null,
+        price : 3500
     },
-    balls: []
+    balls: [],
+    cartItems : [],
+    totalPrice : 100,
+    quantity : 0
 }
 
 const reducer = (state = initialState, action) => {
 
     if (action.type === "CURRENT_USER") {
-        // window.location.pathname = `/${action.user.username}/home`
         return {
             ...state,
             user : {
@@ -44,6 +47,26 @@ const reducer = (state = initialState, action) => {
             balls : action.balls
         }
     }
+
+    if (action.type === "CART_ITEM") {
+        console.log(state,state.cartItems)
+        return {
+            ...state,
+            cartItems : [...state.cartItems, action.cartItem]
+        }
+    }
+
+    if (action.type === "QUANTITY") {
+        return {
+            ...state,
+            quantity : action.quantity
+        }
+    }
+
+
+
+
+
     return state
 }
 

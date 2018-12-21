@@ -84,7 +84,7 @@ class Header extends Component {
 			return (
 				<header>
 					<div className="header">
-						<Link to={`/home`}><h1>Header</h1></Link>
+						<Link to={`/home`}><h1>MyBeautifulBalls</h1></Link>
 
 						<div  className="search-bar-container">
 							<input className="search-bar"  type="text" onChange={this.handleSearchTextBoxOnChange} name="search" placeholder="Search" />

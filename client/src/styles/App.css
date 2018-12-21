@@ -198,13 +198,25 @@ main {
 .ball-container {
 	padding: 1em;
 }
+
 .ball-option-container {
 	display: flex;
 	justify-content: space-between;
 }
+.cart-container {
+	display: flex;
+	flex-wrap: wrap;
+}
 
+.cart-item {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 1em;
+}
 
-
+.checkout {
+	width: 100%;
+}
 
 
 

@@ -19,14 +19,14 @@ class UserNav extends Component {
 			navBar[0].classList.remove('sticky')
 		}
 	}
-
+		let username = localStorage.getItem('username')
 		return (
 			<nav className="nav-bar">
 				<h1>User Nav</h1>
 				
 				<div  className="nav-links-container">
-					<div><Link to = {`/${this.props.user.username}/home`}>Home</Link></div>
-					<div><Link to = {`/${this.props.user.username}/my-cart`}>My Sack</Link></div>
+					<div><Link to = {`/${username}/home`}>Home</Link></div>
+					<div><Link to = {`/${username}/my-cart`}>My Cart</Link></div>
 					<div onClick={this.props.logout}><Link to ="/" >Logout</Link></div>
 				</div>
 			</nav>

@@ -91,7 +91,6 @@ app.post('/api/register', (req, res) => {
 })
 
 app.post('/api/login', (req, res) => {
-    console.log('login server')
 	let username = req.body.username
     let password = req.body.password
 
@@ -116,21 +115,6 @@ app.post('/api/login', (req, res) => {
     })
 })
 
-
-// app.get('/api/:username/home')
-
-
-// app.post('/api/search', (req, res) => {
-
-// 	let post = req.body.search
-// 	//SQL to find it in
-// 	db.any('INSERT INTO history (search) VALUES ($1)', [post])
-// 	res.send(
-// 		`I received your POST request. This is what you sent me: ${post}`,
-// 	);
-// });
-
-
 app.post('/saveImage', (req, res) => {
 
     let ballImage = req.body.ballImage
@@ -149,12 +133,20 @@ app.get('/grabBalls', (req, res) => {
     })
 })
 
-app.post('/removeBall'), (req, res) => {
-    console.log('in server')
+app.post('/removeBall', (req, res) => {
     let id = req.body.id
+    db.none('DELETE FROM balls WHERE id = $1', [id]).catch(e => console.log(e))
+})
 
-    db.one('DELETE FROM balls WHERE id = $1', [id]).catch(e => console.log(e))
-}
+app.post('/addToCart', (req, res) => {
+    let id = req.body.id
+    db.one('SELECT id, image FROM balls WHERE id = $1', [id]).then(ball => {
+        console.log(ball)
+        res.json({ball : ball})
+    })
+})
+
+
 //  _   _  ___ _____ _____
 // | \ | |/ _ \_   _| ____|
 // |  \| | | | || | |  _|
@@ -238,3 +230,14 @@ app.post('/:username/charge', upload.none(), cors(), async (req, res) => {
 
 // console.log that your server is up and running
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+// app.get('/api/:username/home')
+
+// app.post('/api/search', (req, res) => {
+// 	let post = req.body.search
+// 	//SQL to find it in
+// 	db.any('INSERT INTO history (search) VALUES ($1)', [post])
+// 	res.send(
+// 		`I received your POST request. This is what you sent me: ${post}`,
+// 	);
+// });

@@ -3,6 +3,7 @@ import axios from "axios"
 import {connect} from 'react-redux'
 import * as actionCreators from '../../store/actionCreators'
 
+
 const REMOVE_BALL_URL = "http://localhost:5000/removeBall"
 
 class UserHome extends Component {
@@ -10,11 +11,14 @@ class UserHome extends Component {
     super(props)
     this.state = {
       ...this.state,
-      balls : []
-    }
+      balls : []    }
   }
 
   componentWillMount = () => {
+    this.props.grabBalls()
+  }
+
+  componentWillUpdate = () => {
     this.props.grabBalls()
   }
 
@@ -23,22 +27,19 @@ class UserHome extends Component {
     localStorage.removeItem('firstname')
     localStorage.removeItem('lastname')
     localStorage.removeItem('email')
-    this.props.grabBalls()
   }
 
   removeBall = (id) => {
     console.log('removal')
-    console.log(id)
     axios.post(REMOVE_BALL_URL, {
       id : id
     }).catch(e => console.log("Remove ball error",e))
   }
 
   render() {
-    console.log(this.props.balls)
+    // console.log(this.props.cartItems)
     return (
       <div>
-        <h1>User Home</h1>
         {this.props.user.username}
         <section id="my-balls">
           { 
@@ -52,15 +53,14 @@ class UserHome extends Component {
                     <div id={ball.id} className="draw-area-user" dangerouslySetInnerHTML={myBallImage()}></div>
                   </div>
                   <div className="ball-option-container">
-                    <button onClick={() => this.removeBall(ball.id)}>Remove</button>
-                    <button type="submit">Add to MyCart</button>
+                    <button onClick={() => this.removeBall(Number(ball.id))}>Remove</button>
+                    <button type="submit" onClick={() => this.props.addToCart(Number(ball.id))}>Add to MyCart</button>
                   </div>
                 </div>
               )
             }) : ""
           }
         </section>
-        <button onClick={this.props.grabBalls}>Balls</button>
       </div>
     )
   }
@@ -68,6 +68,7 @@ class UserHome extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    cartItems : state.cartItems,
     user : {
       username : state.user.username
     },
@@ -78,7 +79,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
   return {
     grabBalls : () => dispatch(actionCreators.grabBalls()),
-    removeBall : (id) => dispatch(actionCreators.removeBall(id))
+    addToCart : (id) => dispatch(actionCreators.addToCart(id))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(UserHome)

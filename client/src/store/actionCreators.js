@@ -7,6 +7,7 @@ const LOGIN_URL = 'http://localhost:5000/api/login'
 const SAVE_IMAGE_URL = 'http://localhost:5000/saveImage'
 const GRAB_BALLS_URL = 'http://localhost:5000/grabBalls'
 const REMOVE_BALL_URL = "http://localhost:5000/removeBall"
+const ADD_TO_CART_URL = "http://localhost:5000/addToCart"
 
 
 export const currentUser = (user) => {
@@ -38,6 +39,20 @@ export const allBalls = (balls) => {
     }
 }
 
+export const cartItems = (cartItem) => {
+    return {
+        type: 'CART_ITEM',
+        cartItem
+    }
+}
+
+export const quantity = (quan) => {
+    return {
+        type: "QUANTITY",
+        quan
+    }
+}
+
 export const registerUser = () => {
 
     return dispatch => {
@@ -58,7 +73,6 @@ export const registerUser = () => {
         })
     }
 }
-
 
 export const authenticateLogin = () => {
     localStorage.removeItem('jsonwebtoken')
@@ -109,16 +123,12 @@ export const saveBall = () => {
             ballImage : ballImage
         }).then(response => {
             let ballImage = response.data
-            console.log('in actioncreator')
-
             dispatch(checkPath(ballImage))
-            
         })
     }
 }
 
 export const grabBalls = () => {
-    console.log('in action creator')
     return dispatch => {
 
         axios.get(GRAB_BALLS_URL).then( response => {
@@ -129,19 +139,23 @@ export const grabBalls = () => {
             for (let ball in balls) {
                 ballsArray.push(balls[ball])
             }    
-            console.log('in action creator 2')
             dispatch(allBalls(ballsArray))
         })
     }
 }
 
-export const removeBall = (id) => {
+export const addToCart = (id) => {
     return dispatch => {
-        console.log('trying to remove balls')
-        axios.post(REMOVE_BALL_URL, {
-          id : id
-        }).catch(e => console.log(e))
-
-        dispatch(allBalls())
+        axios.post(ADD_TO_CART_URL, {
+            id : id
+        }).then(response => {
+            let cartItem = response.data.ball
+            dispatch(cartItems(cartItem))
+        }).catch(e => console.log('Add to Cart',e))
     }
+}
+
+export const changeQuantity = (quan) => {
+    console.log('inside action')
+    return dispatch => dispatch(quantity(quan))
 }

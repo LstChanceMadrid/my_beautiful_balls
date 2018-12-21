@@ -3,7 +3,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './components/App';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import reducer from './store/reducer'
+import reducer, { initialState } from './store/reducer'
 import thunk from 'redux-thunk'
 
 import { applyMiddleware, compose, createStore } from 'redux'
@@ -14,7 +14,7 @@ import './styles/index.css'; // css styling
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducer,composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(reducer,initialState,composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store = {store}>

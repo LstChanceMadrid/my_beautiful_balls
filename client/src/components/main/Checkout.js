@@ -12,11 +12,12 @@
 
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
+import {connect} from "react-redux"
 
 const stripeApiKey = "pk_test_OSyusZepLTgA89ecvgVbG0IG";
 
 
-const checkoutUrl = "https://asdf1234.sse.codesandbox.io/:username/charge";
+const checkoutUrl = "https://localhost:5000/:username/charge?ssl=true";
 
 class Checkout extends React.Component {
   state = {
@@ -155,20 +156,15 @@ class Checkout extends React.Component {
       })
       .catch(error => {
         console.log("error");
-        console.error(
-          error,
-          "You may need to refresh the server sandbox. It hibernates due to inactivity."
-        );
+        console.error(error);
       });
   };
 
   render() {
     const { show } = this.state;
 
-    let amount = 500
-
     return (
-      <div className="App">
+      <div className="App checkout">
         {stripeApiKey === "pk_test_publishable_key" ? (
           <p>Configure your Stripe test mode publishable key.</p>
         ) : (
@@ -177,7 +173,7 @@ class Checkout extends React.Component {
               <span aria-label="balls image" role="img">
               🎾
               </span>
-              Add Balls to your Sack!
+              Add Balls to your Cart!
             </h1>
             <div className="App__body">
               {show && (
@@ -185,11 +181,9 @@ class Checkout extends React.Component {
                   
                   <StripeCheckout
                     allowRememberMe={false}
-                    amount="500"
+                    amount={this.props.totalPrice}
                     billingAddress
-                    description={`Your balls are gonna cost $${amount}`}
-                    // image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    // image="https://alligator.io/images/alligator-logo3.svg"
+                    description={`Your balls are gonna cost $${this.props.totalPrice}`}
                     image='https://upload.wikimedia.org/wikipedia/commons/d/db/Sports_portal_bar_icon.png'
                     label="Pay with 💳"
                     locale="auto"
@@ -206,13 +200,8 @@ class Checkout extends React.Component {
               <br />
               <br />
               <br />
-              
-              <ul className="text-muted">
-                <li>Credit Card Number: 4242 4242 4242 4242</li>
-                <li>MM/YY: Any present or future date.</li>
-                <li>CVC: Any three digits, e.g., 123.</li>
-              </ul>
-              
+              <div>Everything is only $100!</div>
+              <div>Limited Time Only!!!</div>
             </div>
           </React.Fragment>
         )}
@@ -221,4 +210,11 @@ class Checkout extends React.Component {
   }
 }
 
-export default Checkout
+const mapStateToProps = state => {
+  return {
+    totalPrice : state.totalPrice,
+    cartItems : state.cartItems
+  }
+}
+
+export default connect(mapStateToProps)(Checkout)
