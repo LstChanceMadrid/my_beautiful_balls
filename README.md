@@ -1,6 +1,7 @@
 # MyBeautifulBalls
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)]
+
 
 
 ## Built with
 
+![React](https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/640px-React-icon.svg.png)
