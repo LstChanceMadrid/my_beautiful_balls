@@ -4,4 +4,4 @@
 
 ## Built with
 
-![React](./client/src/styles/reactjs.png =100x)
+![React](./client/src/styles/reactjs.png)
