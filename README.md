@@ -3,8 +3,8 @@
 
 
 ## Built with
-<div style="display:flex;flex-wrap:wrap;">
-<img src="./client/src/styles/reactjs.png" alt="reactjs icon" width="100" />
+<div style="display:flex;flex-wrap:wrap;align-content:center;justify-content:space-evenly;">
+<img src="./client/src/styles/reactjs.png" alt="reactjs icon" title="Reactjs" width="100" />
 <img src="./client/src/styles/redux.png" alt="redux icon" width="100" />
 <img src="./client/src/styles/html5.png" alt="html5 icon" width="100" />
 <img src="./client/src/styles/css3.png" alt="css3 icon" width="100" />
