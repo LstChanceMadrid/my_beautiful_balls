@@ -93,7 +93,7 @@ class Header extends Component {
 						</div>
 					</div>
 
-					<Route exact path="/*" component={Nav} />
+					<Route path="/*" component={Nav} />
 				</header>
 			)
 		}

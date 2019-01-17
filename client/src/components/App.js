@@ -13,9 +13,17 @@ import Register from './main/Register'
 import UserHome from './main/UserHome'
 
 class App extends Component {
+
+  componentWillReceiveProps = () => {
+    this.setState({
+      ...this.state
+    })
+  }
+
   render() {
     if (localStorage.getItem('jsonwebtoken')) {
       let username = localStorage.username
+      console.log(username)
       return (
         <div>
           <Header />

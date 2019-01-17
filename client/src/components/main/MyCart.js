@@ -9,7 +9,7 @@ class MyCart extends Component {
     return (
       <div className="cart-container">
         { this.props.cartItems ? this.props.cartItems.map(cartItem => {
-            console.log(this.props.cartItems)
+            
             const cartItemImage = () => {
               return {__html : cartItem.image}
             }

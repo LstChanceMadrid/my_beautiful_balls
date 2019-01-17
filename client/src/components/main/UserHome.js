@@ -30,17 +30,17 @@ class UserHome extends Component {
   }
 
   removeBall = (id) => {
-    console.log('removal')
+
     axios.post(REMOVE_BALL_URL, {
       id : id
     }).catch(e => console.log("Remove ball error",e))
   }
 
   render() {
-    // console.log(this.props.cartItems)
+
     return (
       <div>
-        {this.props.user.username}
+        Hi {this.props.user.username}!
         <section id="my-balls">
           { 
             this.props.balls ? this.props.balls.map(ball => {

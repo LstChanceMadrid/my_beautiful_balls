@@ -49,7 +49,7 @@ const reducer = (state = initialState, action) => {
     }
 
     if (action.type === "CART_ITEM") {
-        console.log(state,state.cartItems)
+        
         return {
             ...state,
             cartItems : [...state.cartItems, action.cartItem]

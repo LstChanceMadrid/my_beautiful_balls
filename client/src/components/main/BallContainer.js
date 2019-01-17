@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-
-
-
-
 class BallContainer extends Component {
     constructor(props) {
         super(props)
@@ -28,7 +24,6 @@ class BallContainer extends Component {
   render() {
       let balls = this.props.balls
 
-console.log(balls)
     return (
       <div>
         <div className="ball-container">

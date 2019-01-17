@@ -84,7 +84,7 @@ export const authenticateLogin = () => {
             username : localStorage.getItem('username'),
             password : localStorage.getItem('password')
         }).then(response => {
-            if (response.data.token !== undefined) {
+            if (response.data.success) {
         
                 localStorage.removeItem('password')
                 localStorage.setItem('jsonwebtoken', response.data.token)
@@ -105,9 +105,11 @@ export const authenticateLogin = () => {
 }
 
 export const logout = () => {
-    delete localStorage.jsonwebtoken
-    delete localStorage.username
-    delete localStorage.password
+     localStorage.removeItem('jsonwebtoken')
+     localStorage.removeItem('username')
+     localStorage.removeItem('password')
+     localStorage.removeItem('lsid')
+     localStorage.removeItem('ballImage')
     return dispatch => {
         let user = {}
         dispatch(removeUser(user))

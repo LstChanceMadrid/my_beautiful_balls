@@ -21,8 +21,7 @@ class Quantity extends Component {
 
 
   render() {
-    console.log(this.state.quantity)
-    console.log(this.props.quantity)
+
 
 
     return (
