@@ -13,7 +13,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <h1 class="home-header">MyBeautifulBalls</h1>
+        <h1 className="home-header">MyBeautifulBalls</h1>
         
           <DrawArea />
 

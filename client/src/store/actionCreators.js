@@ -6,7 +6,7 @@ const REGISTER_URL = "http://localhost:5000/api/register"
 const LOGIN_URL = 'http://localhost:5000/api/login'
 const SAVE_IMAGE_URL = 'http://localhost:5000/saveImage'
 const GRAB_BALLS_URL = 'http://localhost:5000/grabBalls'
-const REMOVE_BALL_URL = "http://localhost:5000/removeBall"
+// const REMOVE_BALL_URL = "http://localhost:5000/removeBall"
 const ADD_TO_CART_URL = "http://localhost:5000/addToCart"
 
 
@@ -84,9 +84,10 @@ export const authenticateLogin = () => {
             username : localStorage.getItem('username'),
             password : localStorage.getItem('password')
         }).then(response => {
+            localStorage.removeItem('password')
             if (response.data.success) {
         
-                localStorage.removeItem('password')
+                
                 localStorage.setItem('jsonwebtoken', response.data.token)
             
 
@@ -98,7 +99,6 @@ export const authenticateLogin = () => {
             } else {
                 delete axios.defaults.headers.common['Authorization']
                 localStorage.removeItem('username')
-                localStorage.removeItem('password')
             }
         })
     }

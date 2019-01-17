@@ -14,15 +14,9 @@ import UserHome from './main/UserHome'
 
 class App extends Component {
 
-  componentWillReceiveProps = () => {
-    this.setState({
-      ...this.state
-    })
-  }
-
   render() {
     if (localStorage.getItem('jsonwebtoken')) {
-      let username = localStorage.username
+      let username = localStorage.getItem('username')
       console.log(username)
       return (
         <div>

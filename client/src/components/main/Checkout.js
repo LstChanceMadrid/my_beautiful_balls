@@ -2,7 +2,7 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import {connect} from "react-redux"
-import modules from '../../sensitive'
+// import modules from '../../sensitive'
 
 const stripeApiKey = module.stripeKey;
 
