@@ -2,9 +2,9 @@
   "name": "mybeautifulballs",
   "version": "1.0.0",
   "scripts": {
-    "client": "cd client && npm run-script start",
+    "client": "cd client && npm run start",
     "server": "nodemon server.js",
-    "dev": "\"npm run-script start\" && \"npm run client\"",
+    "dev": "\"npm run start\" && \"npm run client\"",
     "start": "node server.js"
   },
   "dependencies": {
