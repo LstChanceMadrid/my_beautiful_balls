@@ -48,14 +48,16 @@ class Login extends Component {
     localStorage.setItem('password', this.state.user.password)
 
     return (
-      <div>
-        <h1>Login</h1>
+      <div className="login-page">
+        <fieldset className="login-fieldset">
+          <legend className="fieldset-legend">Login</legend>
+        
+        <input id="username" className="login-input" type="text" name="username" onChange={this.handleUsernameChange} placeholder="Username" autoFocus />
 
-        <input id="username" type="text" name="username" onChange={this.handleUsernameChange} placeholder="Username" autoFocus />
+        <input id="password" className="login-input" type="password" name="password" onChange={this.handlePasswordChange} placeholder="Password" />
 
-        <input id="password" type="text" name="password" onChange={this.handlePasswordChange} placeholder="Password" />
-
-        <button type="submit" onClick={this.props.login}>Log In</button>
+        <button className="login-button" type="submit" onClick={this.props.login}>Log In</button>
+        </fieldset>
       </div>
     )
   }

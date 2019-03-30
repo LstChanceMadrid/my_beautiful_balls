@@ -41,6 +41,7 @@ class DrawArea extends Component {
         this.setState(prevState => ({
             lines : prevState.lines.updateIn([prevState.lines.size - 1], line => line.push(point))
         }))
+        console.log(this.state.lines)
     }
 
     handleMouseUp = () => {
