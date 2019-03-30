@@ -34,6 +34,7 @@ cloudinary.config({
 
 
 
+
 const authenticate = (req, res, next) => {
     let authorizationHeader = req.headers['authorization']
 
